@@ -1,0 +1,32 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+.precio {
+    font-size: 18px;
+}
+
+p {
+    font-size: 12px;
+}
+
+header {
+    background-color: #EAC926;
+}
+
+.buscar {
+    background-color: #ebebeb;
+    display: inline;
+}
+
+.compra {
+    text-align: center;
+}
