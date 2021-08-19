@@ -28,4 +28,4 @@ Sobre el mismo realizamos pruebas y avanzamos con los distintos desafíos propue
 
 5 - Subirlos a Github:
 
-    git pull
+    git push
