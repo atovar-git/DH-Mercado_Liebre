@@ -5,11 +5,18 @@ const path = require('path');           // Me permite independizar del sistema o
 
 app.use(express.static(path.resolve(__dirname, './public')));   // Indicamos a Express que esta carpeta será pública.
 
-const puerto = process.env.PORT || 3000
-
-app.listen(puerto, () => console.log('Servidor corriendo en el puerto 3000'));   // Levantamos el servidor que estará escuchando peticiones en el puerto 3000.
+app.listen(3000, () => console.log('Servidor corriendo en el puerto 3000'));   // Levantamos el servidor que estará escuchando peticiones en el puerto 3000.
 
 // Ruta para la raíz:
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, './views/home.html'))
+})
+
+// ESTA ES NUEVA la creé para que pueda direccionar a la dirección indicada en el .html (Crar cuenta).
+app.get('/register.html', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './views/register.html'))
+})
+
+app.get('/login.html', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './views/login.html'))
 })

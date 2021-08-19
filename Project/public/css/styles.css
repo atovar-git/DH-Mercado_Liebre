@@ -1,5 +1,7 @@
 /** {border: solid 1px black;}*/
-* {box-sizing: border-box;}
+* {
+    box-sizing: border-box;
+}
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -7,8 +9,6 @@ body {
 }
 
 h2 {font-size: 24px;}
-
-.precio {font-size: 18px;}
 
 h3 {font-size: 16px;}
 
@@ -36,6 +36,11 @@ i {
 
 .buscar-bar {
     text-align: center;
+}
+
+.buscar-bar input, .buscar-bar button {
+    border: none;
+    padding: 6px;
 }
 
 .copy-header {
@@ -83,7 +88,7 @@ i {
     }
 
     .logo {
-            margin: 15px 0; /*Tiene mucho margen, se l o saco así el resto de elementos ocupan bien el espacio*/
+            margin: 15px 0; /*Tiene mucho margen, se lo saco así el resto de elementos ocupan bien el espacio*/
         }
     
     .copy-header {
@@ -140,39 +145,10 @@ i {
     }
 }
 
-
-.create-form {
-    padding: 20px 15px;
-}
-
-.control-formulario {
-    margin-bottom: 15px;
-}
-
-.control-formulario label {
-    font-style: italic;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.control {
-    width: 100%;
-    padding: 8px 8px;
-}
-
-.boton-formulario {
-    background-color: rgb(70, 226, 70);
-    border: none;
-    font-size: 20px;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-
 /* Footer ===================================================*/
-/* footer {
+footer {
     background-color: white;
+    margin-top: 20px;
 }
 
 .footer-articulo {
@@ -183,10 +159,10 @@ i {
     font-size: 60px;
     color: #1259c3;
     margin-top: 20px;
-} */
+}
 
 /* Main ===================================================*/
-/* .main {
+.main {
     width: 90vw;
     margin: auto;
 }
@@ -210,4 +186,109 @@ i {
     .descripcion {
         display: block;
     }
-} */
+}
+
+.envio {    /*Lo pegué de la consigna*/
+    display: block ;
+    font-size: 16px ;
+    padding: 5px ;
+    width: 30px ;
+    height: 30px ;
+    border: 1px solid #39b54a ;
+    background-color: #FFF;
+    border-radius: 50%;
+    /* position: absolute; */
+    right: 20px;
+    top: -15px;
+}
+
+.precio {
+    font-size: 18px;
+    margin-right: 10%;
+}
+
+.precio-descuento {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container-articulos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+@media (min-width: 768px){
+
+    .container-articulos article {
+        width: 48%;
+    }
+}
+
+@media (min-width: 1200px){
+    .container-articulos article {
+        width: 22%;
+    }
+}
+
+/*COSAS A MEJORAR
+- No pude poner el precio-producto 30%-70% porque el texto de precio queda por afuera de su límite y se sobresolapan. Lo hice poniendo un margin que creo que queda mejor. Ojo con las fuentes, parecen iguales siempre.
+- EL header para ponerlo en 2: logo + barra, podemos jugar con su width en alguna resolución media query así los tenemos juntos. Pero me gusta como quedó*/
+
+/*RECORDAR:
+width siempre es el tamaño de su contenedor (width 100% tendrá el tamaño de su contenedor).
+Pensar en las media queries junto con el tamaño del elemento width para jugar con las filas, a ver si entra o no, sino caerá a la otra fila.
+Agrupar los elementos según su temática y/o necesidd de agrupación flex, poner buenos class.
+Muchas veces podemos alinear con text-align, esto alinea su contenido.
+Muchas veces podemos alinear con margin:auto, INDICARLE SIEMPRE UN WIDTH y que sea block o inline-block. inline no acepta widths.
+Jugar con los margin para separar elementos si estan PEGADOS.
+Jugar con el padding para que el CONTENIDO no esté pegado a su BORDE.
+Puede que en mobile no tengamos que usar flex, asegurarnos de tener elemento en bloque o linea según corresponda, luego en resoluciones mas grandes usaremos el agrupamiento por flex. Recordar que flex pasa todo a inline-block, no le importa nada.*/
+
+
+/* Formulario ===================================================*/
+.formulario {
+    padding: 20px 15px;
+    background-color: white;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.formulario input {
+    background-color: #ebebeb;
+    border: none;
+    border-radius: 5px;
+}
+
+.formulario .texto-file {
+    background-color: white;
+}
+
+.texto-datos-cuenta {
+    margin-top: 0px;
+}
+
+.elementos, .texto-foto {
+    margin-bottom: 15px;
+}
+
+.control {
+    width: 50%;
+    padding: 8px 8px;
+}
+
+.intereses-checkbox label, .perfil-radio label {
+    margin-left: 5px;
+}
+
+.boton-formulario {
+    background-color: rgb(68, 23, 230);
+    border: none;
+    font-size: 20px;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+}
