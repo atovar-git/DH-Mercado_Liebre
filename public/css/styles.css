@@ -1,10 +1,12 @@
-/** {border: solid 1px black;}*/
+/* Generales  ===================================================*/
+
 * {
-    box-sizing: border-box;
+    box-sizing: border-box;    /*Necesario, indica que se respetará el tamaño que definimos, hasta el borde menos el margin*/
+    /*border: solid 1px black; /*Lo activo/desactivo para ver los bordes de los elementos*/
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;  /*Se importa de Google*/
     background-color: #ebebeb;
 }
 
@@ -14,24 +16,33 @@ h3 {font-size: 16px;}
 
 p {font-size: 12px;}
 
-img {width: 100%;}
+img {width: 100%;}  /*Para que ocupen el 100% de su contenedor*/
 
 .envio, .descuento {color: rgb(37, 187, 37);}
 
-i {
-    margin: 0 5px
-}
+i {margin: 0 5px}   /*Son los íconos de fontawesome, solo que tengan margin*/
 
-/* Header ===================================================*/
+/* Header =====================================================*/
+
 .main-header {
     background-color: #EAC926;
-    padding: 20px; /*Para que los elementos internos no esten egados al borde*/
+    padding: 20px;   /*Para que los elementos internos no esten pegados al borde*/
+    width: 100%;
+    position: fixed; /*Recordar que sale del flujo normal del HTML y queda flotando pero la siguiente caja ocupa su lugar, así que hay que arreglarlo. Vamos a modificar el margin-top de .banner*/
+    top: 0;          /*fixed usa el viewport para su posición, debemos indicarle que quede arriba*/
+    z-index: 10;     /*Es necesario, sino otros elementos posicionados pasarán por arriba de este*/
 }
 
 .logo {
-    width: 200px; /*Está ok para mobile*/
+    width: 200px;    /*Está ok para mobile*/
     display: block;
     margin: 10px auto;
+    animation: aumentar 2s ease-in infinite alternate;  /*Tiene una animación*/
+}
+
+@keyframes aumentar {
+    0% {transform: scale(1);}
+    100% {transform: scale(1.1);}
 }
 
 .buscar-bar {
@@ -51,17 +62,17 @@ i {
 .hamburguer-button {
     background-color: #03264c;
     color: white;
-    display: block; /*Hará que el fondo del botón (azul) ocupe todo el ancho, así que le ponemos un widht. SUPER importante poner block porque me permite configurarle estas opciones.*/
-    max-width: 50px;    /*Para que el fondo del botón no sea gigante.*/  
+    display: block;     /*Hará que el fondo del botón (azul) ocupe todo el ancho, así que le ponemos un width. SUPER importante poner block porque me permite configurarle estas opciones.*/
+    max-width: 50px;    /*Para que el fondo del botón no sea gigante.*/
     padding: 15px 0;
     border-radius: 8px;
     text-align: center; /*Centra el ícono*/
     font-size: 18px;
-    margin: auto;   /*Recordar que para usar esta propiedad debe tener un width, así que lo podemos usar.*/
+    margin: auto;       /*Recordar que para usar esta propiedad debe tener un width, así que lo podemos usar.*/
 }
 
 .main-navbar {
-    display: none;
+    display: none;      /*Lo ocultamos para mobile*/
 }
 
 .main-navbar ul {
@@ -71,16 +82,15 @@ i {
 }
 
 .main-navbar a {
-    text-decoration: none;
+    text-decoration: none;  /*Elimino su color y estilo*/
     color: #222222;
-    display: inline-block; /*<a> es un elemento de linea solamente. Para poder ponerle relleno arriba y abajo o cambiarle el tamaño debe ser de bloque => inline-block*/
+    display: inline-block;  /*<a> es un elemento de linea solamente. Para poder ponerle relleno arriba y abajo o cambiarle el tamaño debe ser de bloque => inline-block*/
     padding: 5px 0;
     font-size: 17px;
 }
 
 
 @media (min-width: 768px){
-
     .main-header-top-bar {
         display: flex;
         justify-content: space-between;
@@ -97,11 +107,11 @@ i {
     }
 
     .hamburguer-button {
-        display: none;  /*Eliminamos el botón*/
+        display: none;      /*Ocultamos el botón para tablets*/
     }
 
     .main-navbar {
-        display: flex;  /*Aparece y como flex*/
+        display: flex;      /*Lo mostramos para tablets y como flex*/
         justify-content: space-between;
     }
 
@@ -115,9 +125,8 @@ i {
 }
 
 @media (min-width: 1200px){
-
     .logo {
-        width: 250px;
+        width: 250px;       /*Lo agrandamos un poquito*/
     }
 
     .main-header-top-bar, .main-navbar {
@@ -145,6 +154,24 @@ i {
     }
 }
 
+/* Banner ===================================================*/
+
+.banner {
+    margin-top: 242px;  /*Lo corremos por el header fixed, así como en sus media queries*/
+}
+
+@media (min-width: 768px){
+    .banner {
+        margin-top: 151px;
+    }
+}
+
+@media (min-width: 1200px){
+    .banner {
+        margin-top: 176px;
+    }
+}
+
 /* Footer ===================================================*/
 footer {
     background-color: white;
@@ -161,34 +188,75 @@ footer {
     margin-top: 20px;
 }
 
+.tarjeta:hover, .regalo:hover, .proteccion:hover {      /*Lo pegué de internet para tener una animación con el hover*/
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    perspective: 1000px;
+}
+
+@keyframes shake {
+    10%, 90% {transform: translate3d(-1px, 0, 0);}
+    20%, 80% {transform: translate3d(2px, 0, 0);}
+    30%, 50%, 70% {transform: translate3d(-2px, 0, 0);}
+    40%, 60% {transform: translate3d(2px, 0, 0);}
+}
+
+footer h4 {
+    text-align: center;
+    background-color: #EAC926;
+    color: black;
+    padding: 3px;
+    margin-bottom: 0;
+}
+
+@media (min-width: 1200px){
+    .footer-info {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .footer-login { /*El footer en pantallas grandes no queda abajo, lo forzamos*/
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+    }
+}
+
 /* Main ===================================================*/
 .main {
-    width: 90vw;
-    margin: auto;
+    width: 90vw;    /*El main tendrá siempre este tamaño , queda bien visualmente*/
+    margin: auto;   /*Para centrarlo automaticamente*/
 }
 
 .main-seccion article {
     margin-bottom: 10px;
     box-shadow : 0px 0px 10px rgb(100,100,100);
+    transition: all .2s;      /*Animación */
 }
+
+.main-seccion article:hover {
+    transform: scale(1.05);   /*Aumentamos un poco su tamaño*/
+  }
 
 .producto-desc {
     border-top: solid 1px #ebebeb;
     background-color: white;
     padding: 15px;
+    position: relative;        /*Este el el padre de .envio (abajo), es relative para que el .envio pueda ser absolute (referencia a este padre)*/
 }
 
 .descripcion {
-    display: none;
+    display: none;             /*Lo ocultamos para mobile*/
 }
 
 @media (min-width: 768px){
     .descripcion {
-        display: block;
+        display: block;        /*Lo mostramos para tablets*/
     }
 }
 
-.envio {    /*Lo pegué de la consigna*/
+.envio {    /*Lo pegué de la consigna. Ahora lo entiendo, este es position: absolute para que tenga referencia al padre. El padre necesita position relative*/
     display: block ;
     font-size: 16px ;
     padding: 5px ;
@@ -197,7 +265,7 @@ footer {
     border: 1px solid #39b54a ;
     background-color: #FFF;
     border-radius: 50%;
-    /* position: absolute; */
+    position: absolute;
     right: 20px;
     top: -15px;
 }
@@ -221,7 +289,6 @@ footer {
 }
 
 @media (min-width: 768px){
-
     .container-articulos article {
         width: 48%;
     }
@@ -234,26 +301,32 @@ footer {
 }
 
 /*COSAS A MEJORAR
-- No pude poner el precio-producto 30%-70% porque el texto de precio queda por afuera de su límite y se sobresolapan. Lo hice poniendo un margin que creo que queda mejor. Ojo con las fuentes, parecen iguales siempre.
-- EL header para ponerlo en 2: logo + barra, podemos jugar con su width en alguna resolución media query así los tenemos juntos. Pero me gusta como quedó*/
+- No pude poner el precio-producto 30%-70% porque el texto de precio queda por afuera de su límite y se solapan. Lo hice poniendo un margin que creo que queda mejor. Ojo con las fuentes, parecen iguales siempre.
+- El header para ponerlo en 2: logo + barra, podemos jugar con su width en alguna resolución media query así los tenemos juntos. Pero me gusta como quedó*/
 
 /*RECORDAR:
-width siempre es el tamaño de su contenedor (width 100% tendrá el tamaño de su contenedor).
-Pensar en las media queries junto con el tamaño del elemento width para jugar con las filas, a ver si entra o no, sino caerá a la otra fila.
-Agrupar los elementos según su temática y/o necesidd de agrupación flex, poner buenos class.
-Muchas veces podemos alinear con text-align, esto alinea su contenido.
-Muchas veces podemos alinear con margin:auto, INDICARLE SIEMPRE UN WIDTH y que sea block o inline-block. inline no acepta widths.
-Jugar con los margin para separar elementos si estan PEGADOS.
-Jugar con el padding para que el CONTENIDO no esté pegado a su BORDE.
-Puede que en mobile no tengamos que usar flex, asegurarnos de tener elemento en bloque o linea según corresponda, luego en resoluciones mas grandes usaremos el agrupamiento por flex. Recordar que flex pasa todo a inline-block, no le importa nada.*/
-
+- width siempre es el tamaño de su contenedor (width 100% tendrá el tamaño de su contenedor).
+- Pensar en las media queries junto con el tamaño del elemento width para jugar con las filas, a ver si entra o no, sino caerá a la otra fila.
+- Agrupar los elementos según su temática y/o necesidad de agrupación flex, poner buenos class.
+- Muchas veces podemos alinear con text-align, esto alinea su contenido.
+- Muchas veces podemos alinear con margin:auto, INDICARLE SIEMPRE UN WIDTH y que sea block o inline-block. inline no acepta widths, esto aline a sí mismo.
+- Jugar con los margin para separar elementos si estan PEGADOS.
+- Jugar con el padding para que el CONTENIDO no esté pegado a su BORDE.
+- Puede que en mobile no tengamos que usar flex, asegurarnos de tener elemento en bloque o linea según corresponda, luego en resoluciones mas grandes usaremos el agrupamiento por flex. Recordar que flex pasa todo a inline-block, no le importa nada.*/
 
 /* Formulario ===================================================*/
 .formulario {
     padding: 20px 15px;
     background-color: white;
-    margin-top: 20px;
+    margin-top: 262px;           /*Por el header fixed*/
     text-align: center;
+}
+
+@media (min-width: 768px){
+    .formulario {
+        max-width: 800px;       /*Para que no crexa mas*/
+        margin: 171px auto 0;   /*Por el header fixed*/
+    }
 }
 
 .formulario input {
@@ -275,7 +348,7 @@ Puede que en mobile no tengamos que usar flex, asegurarnos de tener elemento en 
 }
 
 .control {
-    width: 50%;
+    width: 100%;
     padding: 8px 8px;
 }
 
@@ -285,10 +358,30 @@ Puede que en mobile no tengamos que usar flex, asegurarnos de tener elemento en 
 
 .boton-formulario {
     background-color: rgb(68, 23, 230);
-    border: none;
     font-size: 20px;
+    border: none;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
     margin: 0 5px;
+    transition: all 0.5s;
 }
+
+.boton-formulario:hover {
+    background-color: #39b54a;
+}
+
+@media (min-width: 1200px){     /*Por el header fixed*/
+    .formulario {
+        margin-top: 196px;
+    }
+}
+
+/*COSAS A MEJORAR:
+- Ojo con el magin que damos despues del header en los formularios, debería ser el main el que tenga el margin, no el formulario
+- El footer en login.html no queda al fondo, lo forzamos con position: absolute; bottom: 0; es la mejor solución que encontré en internet, sino es fixed pero queda feo para las otras páginas*/
+
+/*RECORDAR:
+- Poner el header en fixed. Ponerle un z-index sino otros elementos posicionados pasarán por arriba. Ponerle tu top 0 así queda pegado arriba. Puede perder su tamaño, ponerle width 100%. Corregir el margin de la caja siguiente.
+- Corregir el margin de la caja siguiente por el header fixed.
+- Para posicionar elementos internos de un contenedor-padre, el contenedor-padre debe tener relative y el interno absolute.
