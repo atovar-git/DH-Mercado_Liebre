@@ -59,6 +59,11 @@ i {margin: 0 5px}   /*Son los íconos de fontawesome, solo que tengan margin*/
     text-align: center;
 }
 
+/* Boton hamburguesa - comportamiento -----*/
+#chkbox-hamburguer-button {
+    display: none;
+}
+
 .hamburguer-button {
     background-color: #03264c;
     color: white;
@@ -69,6 +74,24 @@ i {margin: 0 5px}   /*Son los íconos de fontawesome, solo que tengan margin*/
     text-align: center; /*Centra el ícono*/
     font-size: 18px;
     margin: auto;       /*Recordar que para usar esta propiedad debe tener un width, así que lo podemos usar.*/
+}
+
+.close {
+    display: none;      /*Para que no se muestre el botón de cerrado.*/
+}
+
+#chkbox-hamburguer-button:checked ~ .open {        /*Cuando apretamos la hamburguesa, desaparece el boton de hamburguesa.*/
+    display: none;
+}
+
+#chkbox-hamburguer-button:checked ~ .close,
+#chkbox-hamburguer-button:checked ~ .main-navbar { /*Cuando apretamos la hamburguesa, aparece la cruz y el nav-bar.*/
+    display: block;
+}
+
+#chkbox-hamburguer-button:checked ~ .main-navbar {
+    text-align: center;
+    margin-top: 20px;
 }
 
 .main-navbar {
@@ -107,9 +130,18 @@ i {margin: 0 5px}   /*Son los íconos de fontawesome, solo que tengan margin*/
     }
 
     .hamburguer-button {
-        display: none;      /*Ocultamos el botón para tablets*/
+        display: none;                           /*Ocultamos el botón para tablets*/
     }
 
+    #chkbox-hamburguer-button:checked ~ .close { /*Ocultamos el botón para tablets POR SI QUEDA ABIERTO*/
+        display: none;
+    }
+
+    #chkbox-hamburguer-button:checked ~ .main-navbar { /*Volvemos al estado original el man-navbar POR SI QUEDA ABIERTO*/
+        margin-top: 0;
+    }
+
+    #chkbox-hamburguer-button:checked ~ .main-navbar, /*Convertimos la vista de main-navbar para tablets POR SI QUEDA ABIERTO*/
     .main-navbar {
         display: flex;      /*Lo mostramos para tablets y como flex*/
         justify-content: space-between;
@@ -135,6 +167,7 @@ i {margin: 0 5px}   /*Son los íconos de fontawesome, solo que tengan margin*/
         align-items: center;
     }
 
+    #chkbox-hamburguer-button:checked ~ .main-navbar, /*Volvemos al estado original el main-navbar POR SI QUEDA ABIERTO*/
     .main-navbar {
         margin-top: 10px;
     }
