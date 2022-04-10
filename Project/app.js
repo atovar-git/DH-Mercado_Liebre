@@ -6,7 +6,7 @@ const path = require('path');           // Me permite independizar del sistema o
 app.use(express.static(path.resolve(__dirname, './public')));   // Indicamos a Express que esta carpeta será pública.
 
 const port = process.env.PORT || 3000
-app.listen(port, () => console.log('Servidor corriendo en el puerto 3000'));   // Levantamos el servidor que estará escuchando peticiones en el puerto 3000.
+app.listen(port, () => console.log('Servidor corriendo en: {HOSTNAME: ' + process.env.HOSTNAME + ', PORT: ' + port + '}'));   // Levantamos el servidor que estará escuchando peticiones en el puerto 3000.
 
 // Ruta para la raíz:
 app.get('/', (req, res) => {
