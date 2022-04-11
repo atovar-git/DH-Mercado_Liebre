@@ -7,7 +7,7 @@ app.use(express.static(path.resolve(__dirname, './public')));   // Indicamos a E
 
 const port = process.env.PORT || 3000
 app.listen(port, () => console.log('Servidor corriendo en: {HOSTNAME: ' + process.env.APP_URL + ', PORT: ' + port + '}'));   // Levantamos el servidor que estará escuchando peticiones en el puerto 3000.
-
+console.log(process.env);
 // Ruta para la raíz:
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, './views/home.html'))
